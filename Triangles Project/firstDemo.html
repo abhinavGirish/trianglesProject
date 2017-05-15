@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Triangle Exploration Part 1</title>
+	<link href="demo1.css" rel="stylesheet"/>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    </head>
+    <body>
+	<h2> Introduction to Superimposition and Congruence </h2>
+	<a href="firstDemo.html">
+		<div class = "topic" id = "p1"> Introduction to Superimposition and Congruence</div>
+	</a>
+	<a href="secondDemo.html">
+		<div class = "topic" id = "p2"> Superimposition by Rotation and Congruence</div>
+	</a>
+	<a href="thirdDemo.html">
+		<div class = "topic" id = "p3"> Superimposition by Reflection and Congruence</div>
+	</a>
+	<a href="fourthDemo.html">
+		<div class = "topic" id = "p4"> SSS Postulate</div>
+	</a>
+	<a href="fifthDemo.html">
+		<div class ="topic" id = "p5"> SAS Postulate</div>
+	</a>
+	<a href="sixthDemo.html">
+		<div class ="topic" id = "p6"> ASA Postulate</div>
+	</a>
+	<a href="Exercises1.html">
+		<div class ="topic" id = "p7"> Post-Tutorial Exercises </div>
+	</a>
+	<div id= "space"></div>
+	<div id = "explanations">
+		<h3>Click to start</h3>
+		<div>
+			<p> In order to establish that two triangles are congruent, we must be confident that they have the same corresponding sidelengths and angle measures</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>One way to do this is to see if they if two triangles can be placed on top of one another such that there are no overlapping areas. If this is the
+			case, then all the corresponding segments and angles of one triangle meet at the same endpoints of the other triangle. 
+			 The act of placing one triangle on top of another and allowing all of this to happen is called <strong>SUPERIMPOSITION</strong></p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Thus if two triangles' corresponding angles and sidelengths can be superimposed over one another, then they are congruent. Click the button to 'slide' one of the triangles below over the other.
+				<div id="slide">
+    					<input name="SLIDE" type="button" value= "slide"/>
+				</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>The triangles are not overlapping each other. So based on what we just said about superimposition, are the triangles below congruent? Type in 'yes' or 'no' in the response
+			box and click the button. </p>
+				<form name="responseForm">
+			
+					<input type="text" name="response"/>
+		
+				</form>
+				<div id="responseButton">Submit Response</div>
+				<div id = "answer"> Correct! </div>
+		</div>
+		<h3>Click to Continue</h3>
+		<div>
+			<p>But we have to ask ourselves this question...is sliding the <em>only</em> method of superimposition that pertains to congruence of triangles? Or are there other methods of 
+			congruence as well? Go to the next page and find out!</p>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	$(document).ready( function() {
+		$('#answer').hide();
+	var triangleFunction = d3.svg.line()
+				.x(function(d) { return d.x;})
+				.y(function(d) { return d.y;})
+				.interpolate("linear");
+	var triangleData = [ {"x":5, "y":10, "l": "A"}, {"x":5, "y":160, "l":"B"},
+			     {"x":105,"y":160, "l": "C"}, {"x":5, "y":10, "l":"A"}];
+	var triangle2Data = [ {"x":180, "y":10}, {"x":180, "y":160},
+			      {"x":280,"y":160}, {"x":180, "y":10}];
+
+	var textData = [ {"x":5, "y":10, "l": "A"}, {"x":5, "y":160, "l":"B"},
+			 {"x":105,"y":160, "l":"C"}, {"x":5, "y":10, "l":"A"},
+		         {"x":180, "y":10, "l":"A'"}, {"x":180, "y":160, "l":"B'"},
+		         {"x":280,"y":160, "l":"C'"}, {"x":180, "y":10, "l":"A'"}];
+	var svg3 = d3.select("#space").append("svg");
+	svg3.attr("width",600).attr("height",200);
+	var triangleFunction = d3.svg.line()
+					.x(function(d) { return d.x;})
+					.y(function(d) { return d.y;})
+					.interpolate("linear");
+	var triangleImage = svg3.append("path")
+				.attr("d", triangleFunction(triangleData))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "red");
+	var triangleImage2 = svg3.append("path")
+				.attr("d", triangleFunction(triangle2Data))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "red");
+	$('#slide').click( function(){
+		triangleImage.transition()
+				.duration(2000)
+				.attr("d", triangleFunction(triangle2Data));
+		var text = svg3.selectAll("text")
+			       .data(textData)
+			       .enter()
+			       .append("text");
+		var labels = text.attr("x", function(d) {return d.x;})
+			 .attr("y", function(d) {return d.y + 10; })
+			 .text(function(d){return d.l;})
+			 .attr("font-family", "arial")
+			 .attr("font-size", "25px")
+			 .attr("fill", "blue");
+		text.transition()
+			.delay(1000)
+			.duration(1500)
+			.style("opacity", 0);
+	});
+
+	$('.topic').mouseenter(function() {
+ 
+		       $('.topic').fadeTo('fast',0.50);
+    
+			});
+	$('.topic').mouseleave(function() {
+ 
+		       $('.topic').fadeTo('fast',1.00);
+    
+			});
+	$('#responseButton').click( function() {
+		var response = $('input[name=response]').val();
+		var string = String(response);
+		if (string == 'yes')
+			$('#answer').fadeIn('slow');
+		});
+	$("#explanations").accordion({collapsible: true, active: false});
+	
+	});
+	
+	</script>
+	<a href="secondDemo.html">
+		Go to the next page</a>
+     </body>
+</html>

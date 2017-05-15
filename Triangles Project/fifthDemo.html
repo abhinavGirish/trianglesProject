@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Triangle Exploration Part 5</title>
+	<link href="demo5.css" rel="stylesheet"/>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+   	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script> 
+   </head>
+    <body>
+	<h2>SAS Postulate</h2>
+	<a href="firstDemo.html">
+		<div class = "topic" id = "p1"> Introduction to Superimposition and Congruence</div>
+	</a>
+	<a href="secondDemo.html">
+		<div class = "topic" id = "p2"> Superimposition by Rotation and Congruence</div>
+	</a>
+	<a href="thirdDemo.html">
+		<div class = "topic" id = "p3"> Superimposition by Reflection and Congruence</div>
+	</a>
+	<a href="fourthDemo.html">
+		<div class = "topic" id = "p4"> SSS Postulate</div>
+	</a>
+	<a href="fifthDemo.html">
+		<div class ="topic" id = "p5"> SAS Postulate</div>
+	</a>
+	<a href="sixthDemo.html">
+		<div class ="topic" id = "p6"> ASA Postulate</div>
+	</a>
+	<a href="Exercises1.html">
+		<div class ="topic" id = "p7"> Post-Tutorial Exercises </div>
+	</a>
+	<div id = "space"></div>
+	<div id = "explanations">
+		<h3>Click to start</h3>
+		<div>
+			<p> How many distinct triangles can be made with just two sidelengths and an included angle? </p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>To answer this question, let's start out with an angle, as shown in dotted lines....
+				<div id = "animation1" class = "button">start demonstration</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Now let's add a segment of a specific length whose endpoint is on the vertex of the angle. Click the correct button above to add a segment.
+				<div id="addSegment" class = "button">add Segment</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Now let's just add one more sidelength...
+				<div id="addSegment2" class = "button">add Segment 2</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Now let's complete the triangle by connecting the endpoints of both segments!
+				<div id="completeTriangle" class = "button">complete the Triangle</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>So with the two sides and included angle, we can construct a triangle by connecting the endpoints of the segments. Let's see if we can construct a congruent triangle from the same exact segments and angle,
+			 except in a different order, starting with one segment, adding an angle, and then another segment.Pay attention closely to the animation...
+				<div id="makeTriangle" class = "button">construct second triangle</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>So the triangles once again can be superimposed and are therefore congruent...this leads us to another method of establishing congruence,
+			 also known as SAS, or 'side-angle-side' congruence. In other words, if two triangles have corresponding sides that are of the same length
+			along with corresponding included angles that are of the same measure, then these triangles are congruent. </p>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(document).ready( function() {
+	var triangleFunction = d3.svg.line()
+				.x(function(d) { return d.x;})
+				.y(function(d) { return d.y;})
+				.interpolate("linear");
+	var svg5 = d3.select("#space").append("svg");
+	svg5.attr("width",1500).attr("height",200);
+	var triangle2Data = [ {"x":100, "y":10}, {"x":100, "y":90},
+			      {"x":150,"y":90}, {"x":100, "y":10}];
+	var lineSegmentsData = [{"x": 300, "y":0},{"x":100, "y":100}, {"x":350, "y":100}];
+	var lineSegmentsData2 = [{"x":240 ,"y":30}, {"x": 100, "y":100 }];
+	var lineSegmentsData3 = [{"x":100, "y":100}, {"x":300, "y":100}];
+	var triangleData = [{"x": 240, "y":30},{"x":100, "y":100}, {"x":300, "y":100}, {"x":240,"y":30}];
+	var lineSegmentsData4 = [{"x":400, "y":90}, {"x":600, "y":90}];
+	var linesegmentsData5 = [{"x":100, "y":100}, {"x":240, "y":30}];
+
+	var lineSegmentsData6 = [{"x":600, "y":100}, {"x":800, "y":100}];
+	var lineSegmentsData7 = [{"x":800, "y":0},{"x":600, "y":100}, {"x":800, "y":100}];
+	var lineSegmentsData8 = [{"x":740, "y":30},{"x":600, "y":100}, {"x":800, "y":100}];
+	var triangleData2 = [{"x":740, "y":30},{"x":600, "y":100}, {"x":800, "y":100}, {"x":740, "y":30}];
+	triangleImage7 = svg5.append("path")
+				.attr("d", triangleFunction(lineSegmentsData))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "white")
+				.style("stroke-dasharray", ("5, 2"))
+				.style("opacity",0)
+	function firstAnimation()
+	{
+		triangleImage7.transition()
+			.delay(500)
+			.duration(2000)
+			.style("opacity",100);
+	}
+	function addSegment()
+	{
+		triangleImage7.transition()
+			.delay(1500)
+			.duration(2500)
+			.attr("d", triangleFunction(lineSegmentsData2))
+			.attr("transform","rotate(0)");
+		triangleImage8 = svg5.append("path")
+				.attr("d", triangleFunction(lineSegmentsData3))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "white")
+				.style("opacity",0)
+		triangleImage8.transition()
+			.delay(3500)
+			.duration(3000)
+			.style("opacity",100);
+	}
+
+	function addSecondSegment()
+	{
+		triangleImage7.transition()
+			.delay(3000)
+			.style("stroke-dasharray",("0, 0"));
+	}
+
+	function completeTriangle()
+	{
+		triangleImage7.transition()
+			.delay(1000)
+			.duration(4500)
+			.attr("d", triangleFunction(triangleData));
+	}
+
+	function makeTriangle()
+	{
+		triangleImage7.transition()
+			.delay(500)
+			.duration(3500)
+			.attr("d", triangleFunction(triangleData));
+		triangleImage9 = svg5.append("path")
+				.attr("d", triangleFunction(lineSegmentsData6))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "white")
+				.style("opacity",0);
+		triangleImage9.transition()
+			.delay(5000)
+			.duration(2000)
+			.style("opacity",100);
+		triangleImage10 = svg5.append("path")
+				.attr("d", triangleFunction(lineSegmentsData7))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "white")
+				.style("stroke-dasharray", ("5, 2"))
+				.style("opacity",0);
+		triangleImage10.transition()
+			.delay(7000)
+			.duration(3000)
+			.style("opacity",100);
+		triangleImage10.transition()
+			.delay(10000)
+			.duration(3000)
+			.attr("d", triangleFunction(lineSegmentsData8))
+			.style("stroke-dasharray", ("0,0"))
+		triangleImage10.transition()
+			.delay(14000)
+			.duration(3000)
+			.attr("d", triangleFunction(triangleData2));
+		triangleImage10.transition()
+			.delay(17000)
+			.duration(4000)
+			.attr("d", triangleFunction(triangleData));
+	}
+	$('.topic').mouseenter(function() {
+ 
+		       $('.topic').fadeTo('fast',0.50);
+    
+			});
+	$('.topic').mouseleave(function() {
+ 
+		       $('.topic').fadeTo('fast',1.00);
+    
+			});
+	$("#explanations").accordion({collapsible: true, active: false});
+	$('#addSegment').click( function() {
+		addSegment();
+		})
+	$('#addSegment2').click( function() {
+		addSecondSegment();
+		});
+	$('#completeTriangle').click( function() {
+		completeTriangle();
+		});
+	$('#makeTriangle').click( function() {
+		makeTriangle();
+		});
+	$('#animation1').click( function() {
+		firstAnimation();
+		});
+	});
+	
+	</script>
+	<a href="sixthDemo.html">
+		Go to the next page</a>
+     </body>
+</html>

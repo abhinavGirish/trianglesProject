@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Triangle Exploration Part 2</title>
+	<link href="demo2.css" rel="stylesheet"/>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>    
+</head>
+    <body>
+	<h2>Superimposition by Rotation and Congruence</h2>
+	<a href="firstDemo.html">
+		<div class = "topic" id = "p1"> Introduction to Superimposition and Congruence</div>
+	</a>
+	<a href="secondDemo.html">
+		<div class = "topic" id = "p2"> Superimposition by Rotation and Congruence</div>
+	</a>
+	<a href="thirdDemo.html">
+		<div class = "topic" id = "p3"> Superimposition by Reflection and Congruence</div>
+	</a>
+	<a href="fourthDemo.html">
+		<div class = "topic" id = "p4"> SSS Postulate</div>
+	</a>
+	<a href="fifthDemo.html">
+		<div class ="topic" id = "p5"> SAS Postulate</div>
+	</a>
+	<a href="sixthDemo.html">
+		<div class ="topic" id = "p6"> ASA Postulate</div>
+	</a>
+	<a href="Exercises1.html">
+		<div class ="topic" id = "p7"> Post-Tutorial Exercises </div>
+	</a>
+	<div id = "explanations">
+		<h3>Click to start</h3>
+		<div id = "demonstration">
+			<p> If two triangles can be superimposed over one another by method of rotation, then they are congruent. Click the button to see a 
+			    demonstration. 
+				<div id= "rotation">animate</div>	
+			</p>
+		</div>
+		<h3>Click to continue</h3>
+		<div>
+			<p> But is there another method of superimposition which we can use as well? Go to the next page and find out - But 
+			wait! Before you go, make sure you finish the simple exercise below!!! </p>
+		</div>
+		<h3>Click to see the exercise</h3>
+		<div id ="exercise1">
+			<p> Are the following triangles congruent? Find out if they are by dragging one over the other to see if they superimpose! </p>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+
+	$(document).ready( function() {
+	d3.select("body").append("p").text("TRIANGLE EXPLORATION PART 2");
+	var triangleFunction = d3.svg.line()
+				.x(function(d) { return d.x;})
+				.y(function(d) { return d.y;})
+				.interpolate("linear");
+	var triangleData = [ {"x":5, "y":10, "l": "A"}, {"x":5, "y":90, "l":"B"},
+			     {"x":55,"y":90, "l": "C"}, {"x":5, "y":10, "l":"A"}];
+	var triangle2Data = [ {"x":100, "y":10}, {"x":100, "y":90},
+			      {"x":150,"y":90}, {"x":100, "y":10}];
+	var triangle3Data = [ {"x":5, "y":10, "l": "A"}, {"x":5, "y":160, "l":"B"},
+			     {"x":105,"y":160, "l": "C"}, {"x":5, "y":10, "l":"A"}];
+	var triangle4Data = [ {"x":180, "y":10}, {"x":180, "y":160},
+			      {"x":280,"y":160}, {"x":180, "y":10}];
+	var svg3 = d3.select("#demonstration").append("svg");
+	svg3.attr("width",600).attr("height",200);
+	triangleImage3 = svg3.append("path")
+					.attr("d", triangleFunction(triangleData))
+					.attr("stroke", "green")
+					.attr("stroke-width", 2)
+					.attr("fill", "red")
+					.attr("transform", "rotate(-25)")
+	triangleImage4 = svg3.append("path")
+					.attr("d", triangleFunction(triangle2Data))
+					.attr("stroke", "green")
+					.attr("stroke-width", 2)
+					.attr("fill", "red");
+	var svg4 = d3.select("#exercise1").append("svg");
+	svg4.attr("width", 600).attr("height",200);
+	triangleImage5 = svg4.append("path")
+					.attr("d", triangleFunction(triangle3Data))
+					.attr("stroke", "green")
+					.attr("stroke-width", 2)
+					.attr("fill", "red");
+	triangleImage6 = svg4.append("path")
+					.attr("d", triangleFunction(triangle4Data))
+					.attr("stroke", "green")
+					.attr("stroke-width", 2)
+					.attr("fill", "red");
+	
+	$('.topic').mouseenter(function() {
+ 
+		       $('.topic').fadeTo('fast',0.50);
+    
+			});
+	$('.topic').mouseleave(function() {
+ 
+		       $('.topic').fadeTo('fast',1.00);
+    
+			});
+	$("#explanations").accordion({collapsible: true, active: false});
+	$("#rotation").click( function() {
+			triangleImage3.transition()
+					.attr("transform", "rotate(0)")
+					.duration(1000)
+					.delay(500)
+					.attr("d", triangleFunction(triangle2Data));
+		});
+
+	});
+	</script>
+	<!--Make me into a comment. -->
+	<a href="thirdDemo.html">
+		Go to the next page</a>
+     </body>
+</html>

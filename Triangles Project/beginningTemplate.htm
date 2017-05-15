@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Triangle Exploration</title>
+	<link href="beginningTemplate.css" rel="stylesheet"/>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    </head>
+    <body> 
+	<h1>FUNDAMENTALS OF GEOMETRY: CONGRUENCE OF TRIANGLES</h1>
+	<h2> Introduction </h2>
+	<div id= "overview">Click one of the following links to jump ahead to a particular topic in this lesson</div>
+
+	<a href="firstDemo.html">
+		<div class = "topic" id = "p1"> Introduction to Superimposition and Congruence</div>
+	</a>
+	<a href="secondDemo.html">
+		<div class = "topic" id = "p2"> Superimposition by Rotation and Congruence</div>
+	</a>
+	<a href="thirdDemo.html">
+		<div class = "topic" id = "p3"> Superimposition by Reflection and Congruence</div>
+	</a>
+	<a href="fourthDemo.html">
+		<div class = "topic" id = "p4"> SSS Postulate</div>
+	</a>
+	<a href="fifthDemo.html">
+		<div class ="topic" id = "p5"> SAS Postulate</div>
+	</a>
+	<a href="sixthDemo.html">
+		<div class ="topic" id = "p6"> ASA Postulate</div>
+	</a>
+	<a href="Exercises1.html">
+		<div class ="topic" id = "p7"> Post-Tutorial Exercises </div>
+	</a>
+	<div id = "introduction">
+		<h3>Click to start</h3>
+		<div>
+			<p> Welcome to the Program! In this lesson, you will learn some fundamental concepts behind the study of geometry. Many geometric theorems or principles are derived 
+			from the study of triangles, which we will focus on in this brief lecture. In addition, many properties of quadrilaterals, pentagons, hexagons
+			and other types of polygons you will encounter later on in your geometry course can be proved by using triangles...</p>
+		</div>
+		<h3>Click to Continue</h3>
+		<div>
+			<p>In our brief journey through this small world of triangles, we will discover what it means for two triangles to be congruent. We will discover
+			the postulates that establish triangles as congruent and more importantly, why they work.</p>
+		</div>
+		<h3>Click to Continue</h3>
+		<div>
+			<p>To start our exploration, here is a simple, yet fundamental question to guide us:
+			 How many triangles can be made with three sidelengths, assuming they satisfy the triangle inequality rule? 
+			 Or we could simplify the question further by taking a single case and asking ourselves this how many triangles 
+			 can be made with the following sidelengths: 60, 80, 100 ? (Click on the choices below) </p>
+			
+			<div class="part1A" id="question1A">A) Two triangles</div>
+			<div class="part1A" id="result1A">INCORRECT! try again. </div> <br>
+			<div class="part1B" id="question1B">B) One triangle</div>
+			<div class="part1B" id="result1B">CORRECT! But how exactly do we show that this is true? And how does this relate to
+			triangle congruence? In the next couple of lessons, we shall explore a method of establishing congruence and then look
+			at a very similar problem like this to discover a useful postulate in geometry</div> <br>
+			<div class="part1C" id="question1C">C) An infinite number of triangles </div>
+			<div class="part1C" id="result1C">INCORRECT! try again. </div> <br>
+		</div>
+	</div>
+        <script type="text/javascript">
+	$(document).ready( function() {
+		var answer = d3.select("body")
+				.append("p")
+				.style("font-size", "50px")
+				.style("font-family", "Courier")
+				.style("opacity",0);
+		function showResultC()
+			{
+				answer.transition()
+					.style("font-family", "Algerian")
+					.style("opacity",100)
+					.text("YOU ARE CORRECT! But the question is how can we show that this is true? To find out we will explore some fundamental concepts in geometry in the next page");
+			}
+	        var svg = d3.select("body").append("svg");
+		svg.attr("width",400).attr("height",200);   
+		var svg2 = d3.select("body").append("svg");
+		svg2.attr("width",400).attr("height",200);
+		var triangleData = [ {"x":5, "y":10, "l": "A"}, {"x":5, "y":90, "l":"B"},
+				     {"x":55,"y":90, "l":"C"}, {"x":5, "y":10, "l":"A"}];
+		var textData = [ {"x":5, "y":10, "l": "A"}, {"x":5, "y":90, "l":"B"},
+				     {"x":55,"y":90, "l":"C"}, {"x":5, "y":10, "l":"A"},
+				     {"x":100, "y":10, "l":"A'"}, {"x":100, "y":90, "l":"B'"},
+				     {"x":150,"y":90, "l":"C'"}, {"x":100, "y":10, "l":"A'"}];
+		var triangle2Data = [ {"x":100, "y":10}, {"x":100, "y":90},
+				     {"x":150,"y":90}, {"x":100, "y":10}];
+		var triangle3Data = [ {"x":200, "y":10}, {"x":200, "y":90},
+				     {"x":150,"y":90}, {"x":200, "y":10}];
+		var triangleFunction = d3.svg.line()
+						.x(function(d) { return d.x;})
+						.y(function(d) { return d.y;})
+						.interpolate("linear");
+		$('#result1A').hide();
+		$('#result1B').hide();
+		$('#result1C').hide();
+		$('#question1A').click( function(){
+			$('#result1A').fadeIn('slow');
+		});
+		$('#question1B').click(function(){
+			$('#result1B').fadeIn('slow');
+		});
+		$('#question1C').click(function(){
+			$('#result1C').fadeIn('slow');
+		});
+		$('.topic').mouseenter(function() {
+ 
+		       $('.topic').fadeTo('fast',0.50);
+    
+			});
+		$('.topic').mouseleave(function() {
+ 
+		       $('.topic').fadeTo('fast',1.00);
+    
+			});
+		$("#introduction").accordion({collapsible: true, active: false});
+		});
+	</script>
+    </body>
+	
+</html>

@@ -1,0 +1,106 @@
+@charset "utf-8";
+/* CSS Document*/
+/*Define the body element's color*/
+body{
+	background: limegreen;
+	padding: 30px;
+	border: 3px solid #cc0000;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 20px;
+	
+}
+
+h1{
+	background: tan;
+	font-size: 50px;
+	text-align: center;
+	position: relative;
+}
+
+h2{
+	background: CC9966;
+}
+
+div{
+	font-size: 20px;
+	border-radius: 7px;
+	display: inline;
+	color: maroon;
+	text-align: left;
+	margin: 10px;
+	height:25px;
+}
+
+.topic
+{
+	background-color: orange;
+}
+
+#overview{
+	background-color: blue;
+	color: white;
+}
+
+#introduction{
+	text-align: left;
+	background-color: limegreen;
+}
+
+.part1A {
+	font-family: Verdana, Arial, Sans-Serif;
+	height:40px;
+    
+	width:100px;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 5px;
+	color: maroon;
+	background-color: darkseagreen;
+	display: inline-block;
+}
+
+.part1B {
+	font-family: Verdana, Arial, Sans-Serif;
+	height:40px;
+    
+	width:100px;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 5px;
+	color: maroon;
+	background-color: darkseagreen;
+	display: inline-block;
+}
+
+.part1C {
+	font-family: Verdana, Arial, Sans-Serif;
+	height:40px;
+    
+	width:100px;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 5px;
+	color: maroon;
+	background-color: darkseagreen;
+	display: inline-block;
+}
+
+#result1A {
+	background-color: red;
+	display: inline;
+}
+
+#result1B {
+	background-color: green;
+	display: inline;
+	
+}
+
+#result1C {
+	background-color: red;
+	display: inline;
+}
+
+
+
+

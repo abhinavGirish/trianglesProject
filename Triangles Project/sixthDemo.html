@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Triangle Exploration Part 6</title>
+	<link href="demo6.css" rel="stylesheet"/>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>    
+   </head>
+    <body>
+	<h2>ASA Postulate</h2>
+	<a href="firstDemo.html">
+		<div class = "topic" id = "p1"> Introduction to Superimposition and Congruence</div>
+	</a>
+	<a href="secondDemo.html">
+		<div class = "topic" id = "p2"> Superimposition by Rotation and Congruence</div>
+	</a>
+	<a href="thirdDemo.html">
+		<div class = "topic" id = "p3"> Superimposition by Reflection and Congruence</div>
+	</a>
+	<a href="fourthDemo.html">
+		<div class = "topic" id = "p4"> SSS Postulate</div>
+	</a>
+	<a href="fifthDemo.html">
+		<div class ="topic" id = "p5"> SAS Postulate</div>
+	</a>
+	<a href="sixthDemo.html">
+		<div class ="topic" id = "p6"> ASA Postulate</div>
+	</a>
+	<a href="Exercises1.html">
+		<div class ="topic" id = "p7"> Post-Tutorial Exercises </div>
+	</a>
+	<div id = "space">Demonstration of ASA</div>
+	<div id = "explanations">
+		<h3>Click to start</h3>
+		<div>
+			<p> How many distinct triangles can be made with just TWO ANGLES and an included SIDELENGTH? </p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>To answer the question, let's start out with an angle, as we did in the previous lesson. 
+				<div id="transition1" class = "button">add angle</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Now let's add a another angle to the figure (to be shown in dotted lines). Click the correct button above to add another angle.
+				<div id="addAngle" class = "button">add second angle</div>			
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Now, let's add a side of 50 units. Click the button below to add the side.
+				<div id="addSide" class = "button">add a Side</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Now that we have two angles and a side in between, let's complete the triangle!
+				<div id="completeTriangle" class = "button">complete the Triangle</div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Voila! There's another triangle. If you think about it, the rays from the two angles can only intersect at one point and thus only one distinct triangle can be formed from these parts. 
+			Using similar logic with superimposition as in the previous two postulates, this leads us to another fundamental rule in geometry: the ASA or 'Angle-Side-Angle' postulate. In other words,
+			two triangles are congruent if two corresponding angles and included sidelength are all congruent. There are a few exercises after the lesson for you to try on your own. </p>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(document).ready( function() {
+	var triangleFunction = d3.svg.line()
+				.x(function(d) { return d.x;})
+				.y(function(d) { return d.y;})
+				.interpolate("linear");
+	var svg5 = d3.select("#space").append("svg");
+	svg5.attr("width",1500).attr("height",200);
+	var triangle2Data = [ {"x":100, "y":10}, {"x":100, "y":90},
+			      {"x":150,"y":90}, {"x":100, "y":10}];
+	var lineSegmentsData = [{"x": 300, "y":0},{"x":100, "y":100}, {"x":350, "y":100}];
+	var lineSegmentsData2 = [{"x":300 ,"y":0}, {"x": 100, "y":100 }, {"x":350, "y":100},{"x":325,"y":50}];
+	var lineSegmentsData3 = [{"x":450, "y":100}, {"x":550, "y":100},{"x":525, "y":50}];
+	var triangleData = [{"x": 100, "y":100},{"x":350, "y":100}, {"x":300, "y":0}, {"x":100,"y":100}];
+	var lineSegmentsData4 = [{"x":250, "y":100}, {"x":350, "y":100},{"x":325, "y":50}];
+	var lineSegmentsData5 = [{"x":250, "y":100}, {"x":350, "y":100},{"x":300, "y":0}];
+
+	var lineSegmentsData6 = [{"x":600, "y":100}, {"x":800, "y":100}];
+	var triangleData2 = [{"x":740, "y":30},{"x":600, "y":100}, {"x":800, "y":100}, {"x":740, "y":30}];
+	triangleImage7 = svg5.append("path")
+				.attr("d", triangleFunction(lineSegmentsData))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "white")
+				.style("stroke-dasharray", ("5, 2"))
+				.style("opacity",0)
+	function transition1()
+	{
+		triangleImage7.transition()
+			.delay(500)
+			.duration(3000)
+			.style("opacity",100);
+	}
+
+	var triangleImage8 = svg5.append("path")
+				.attr("d", triangleFunction(lineSegmentsData3))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "white")
+				.style("stroke-dasharray", ("5, 2"))
+				.style("opacity",0)
+	function addAngle()
+	{
+		triangleImage8.transition()
+			.delay(500)
+			.duration(1500)
+			.style("opacity",100);
+	}
+	function addSide()
+	{
+		triangleImage8.transition()
+			.delay(500)
+			.duration(2500)
+			.attr("d", triangleFunction(lineSegmentsData4))
+			.style("stroke-dasharray",("0, 0"));
+		triangleImage7.transition()
+			.delay(1500)
+			.duration(2000)
+			.style("stroke-dasharray", ("0, 0"));
+	}
+	function completeTriangle()
+	{
+		triangleImage8.transition()
+			.delay(500)
+			.duration(2000)
+			.attr("d", triangleFunction(lineSegmentsData5));
+	}
+	$('.topic').mouseenter(function() {
+ 
+		       $('.topic').fadeTo('fast',0.50);
+    
+			});
+	$('.topic').mouseleave(function() {
+ 
+		       $('.topic').fadeTo('fast',1.00);
+    
+			});
+	$('#addAngle').click( function() {
+		addAngle();
+		});
+	$('#completeTriangle').click( function() {
+		completeTriangle();
+		});
+	$('#addSide').click( function() {
+		addSide();
+		});
+	$("#explanations").accordion({collapsible: true, active: false});
+	$('#transition1').click( function() {
+		transition1();
+		});
+	});
+	</script>
+	<a href="Exercises1.html">
+		Go to the next page</a>
+     </body>
+</html>

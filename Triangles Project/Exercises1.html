@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Exercises</title>
+	<link href="main.css" rel="stylesheet"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="d3/d3.v3.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('#result1A').hide();
+		$('#result1B').hide();
+		$('#result1C').hide();
+		$('#result1D').hide();
+		$('#result2A').hide();
+		$('#result2B').hide();
+		$('#result2C').hide();
+		$('#result2D').hide();
+		$('#result3A').hide();
+		$('#result3B').hide();
+		$('#result3C').hide();
+		$('#result4A').hide();
+		$('#result4B').hide();
+		$('#result4C').hide();
+		$('#question1A').click( function(){
+			$('#result1A').fadeIn('slow');
+		});
+		$('#question1B').click(function(){
+			$('#result1B').fadeIn('slow');
+		});
+		$('#question1C').click(function(){
+			$('#result1C').fadeIn('slow');
+		});
+		$('#question1D').click(function(){
+			$('#result1D').fadeIn('slow');
+		});
+		$('#question2A').click( function(){
+			$('#result2A').fadeIn('slow');
+		});
+		$('#question2B').click(function(){
+			$('#result2B').fadeIn('slow');
+		});
+		$('#question2C').click(function(){
+			$('#result2C').fadeIn('slow');
+		});
+		$('#question2D').click(function(){
+			$('#result2D').fadeIn('slow');
+		});
+		$('#question3A').click( function(){
+			$('#result3A').fadeIn('slow');
+		});
+		$('#question3B').click(function(){
+			$('#result3B').fadeIn('slow');
+		});
+		$('#question3C').click(function(){
+			$('#result3C').fadeIn('slow');
+		});
+		$('#question4A').click(function(){
+			$('#result4A').fadeIn('slow');
+		});
+		$('#question4B').click( function(){
+			$('#result4B').fadeIn('slow');
+		});
+		$('#question4C').click(function(){
+			$('#result4C').fadeIn('slow');
+		});
+		var triangleFunction = d3.svg.line()
+				.x(function(d) { return d.x;})
+				.y(function(d) { return d.y;})
+				.interpolate("linear");
+		var svg1 = d3.select("#result3A").append("svg");
+		svg1.attr("width",1200).attr("height",250);
+		var svg2 = d3.select("#result4C").append("svg");
+		svg2.attr("width",1200).attr("height",250);
+		var diagram1 = [];
+		var diagram2 = [];
+		
+	});
+	</script>
+    </head>
+    <body>
+		<h1>Quiz</h1>
+		<p>Which of the following cannot be used to establish congruence? Click on the correct answer below.</p>
+
+		<div class="part1A" id="question1A">A) SAS</div>
+		<div class="part1A" id="result1A">WRONG! This was covered earlier in the lesson. try again</div> <br>
+		<div class="part1B" id="question1B">B) ASA</div>
+		<div class="part1B" id="result1B">WRONG! This was covered earlier in the lesson. try again.</div> <br>
+		<div class="part1C" id="question1C">C) SSS</div>
+		<div class="part1C" id="result1C">WRONG! This was covered earlier in the lesson. try again.</div> <br>
+		<div class="part1D" id="question1D">D) SSA</div>
+		<div class="part1D" id="result1D">CORRECT! Although SAS, ASA, and SSS work, we did not say that SSA works. We shall discover in another lesson why two sidelengths and a unincluded angle cannot be used to establish congruence. </div> <br>
+		
+		<p>Which of the following are ways we can superimpose triangles over one another to show congruence? Click all of the following choices that apply.</p>
+
+		<div class="part2A" id="question2A">A) reflection</div>
+		<div class="part2A" id="result2A">CORRECT! </div> <br>
+		<div class="part2B" id="question2B">B) rotation</div>
+		<div class="part2B" id="result2B">CORRECT!</div> <br>
+		<div class="part2C" id="question2C">C) bouncing</div>
+		<div class="part2C" id="result2C">WRONG! </div> <br>
+		<div class="part2D" id="question2D">D) sliding</div>
+		<div class="part2D" id="result2D">CORRECT!</div> <br>
+
+		<p>If we are given two triangles such that one has two sides of lengths 6 and 7 and an included angle of 70 degrees and the other triangle has two sides of the same lengths and an included angle of 70 degrees, the two triangles are congruent. Is this statement sometimes true, always true, or never true? Click the appropriate choice</p>
+
+		<div class="part3A" id="question3A">A) Always</div>
+		<div class="part3A" id="result3A">CORRECT! </div> <br>
+		<div class="part3B" id="question3B">B) Sometimes</div>
+		<div class="part3B" id="result3B">WRONG!</div> <br>
+		<div class="part3C" id="question3C">C) Never</div>
+		<div class="part3C" id="result3C">WRONG! </div> <br>
+
+		<p>If we are given two triangles such that one has angles of 90 degrees and 30 degrees and included side of 12 and the other triangle has angles of 30 degrees and 45 degrees and an included side of 12, the two triangles are congruent. Is this statement sometimes true, always true, or never true? Click the appropriate choice</p>
+
+		<div class="part4A" id="question4A">A) Always</div>
+		<div class="part4A" id="result4A">WRONG! </div> <br>
+		<div class="part4B" id="question4B">B) Sometimes</div>
+		<div class="part4B" id="result4B">WRONG!</div> <br>
+		<div class="part4C" id="question4C">C) Never</div>
+		<div class="part4C" id="result4C">CORRECT! </div> <br>
+		
+	
+	<a href="thirdDemo.html">
+		Go to the next page</a>
+</applet>
+</applet>
+	
+     </body>
+</html>

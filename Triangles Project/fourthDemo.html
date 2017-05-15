@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Triangle Exploration Part 4</title>
+	<link href="demo4.css" rel="stylesheet"/>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    </head>
+    <body>
+	<h2>SSS Postulate</h2>
+	<a href="firstDemo.html">
+		<div class = "topic" id = "p1"> Introduction to Superimposition and Congruence</div>
+	</a>
+	<a href="secondDemo.html">
+		<div class = "topic" id = "p2"> Superimposition by Rotation and Congruence</div>
+	</a>
+	<a href="thirdDemo.html">
+		<div class = "topic" id = "p3"> Superimposition by Reflection and Congruence</div>
+	</a>
+	<a href="fourthDemo.html">
+		<div class = "topic" id = "p4"> SSS Postulate</div>
+	</a>
+	<a href="fifthDemo.html">
+		<div class ="topic" id = "p5"> SAS Postulate</div>
+	</a>
+	<a href="sixthDemo.html">
+		<div class ="topic" id = "p6"> ASA Postulate</div>
+	</a>
+	<a href="Exercises1.html">
+		<div class ="topic" id = "p7"> Post-Tutorial Exercises </div>
+	</a>
+	<div id = "space">Demonstration of SSS</div>
+	<div id = "explanations">
+		<h3>Click to start</h3>
+		<div>
+			<p> How many distinct triangles can be made with the sidelengths of 50 units, 80 units, and 94 units (shown connected in a straight line above) ?</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Let us try to make one triangle with the first set of sidelengths shown on the left....
+				Click the button below to see the animation.
+				<div id = "animation1" class = "button"> continue animation </div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>There's one! Now let's see if we can make another...Click the button below.
+				<div id = "animation2" class = "button"> continue animation </div>
+			</p>
+		</div>
+
+		<h3>Click to Continue</h3>
+		<div>
+			<p>Ta-da! But wait a moment - they look congruent. They don't look distinct.Let's see if we can superimpose one over the other to see if they're congruent...
+				<div id = "animation3" class = "button"> continue animation </div>
+			</p>
+		</div>
+
+                 <h3>Click to Continue</h3>
+		<div>
+			<p>So they can be superimposed...therefore, they are congruent...this leads to a postulate that is important in establishing congruence - 
+			if all three sidelengths of two triangles are congruent(which we know to be true, beginning with two sets of the same sidelengths above), 
+			then the triangles are congruent. This is also known as SSS, short for side-side-side congruence. In other words, if there are two triangles with 
+			corresponding sides that are the same in measure, then the two triangles are congruent.Let's take a look at a few other ways of establishing congruence...</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$(document).ready( function() {
+	var triangleFunction = d3.svg.line()
+				.x(function(d) { return d.x;})
+				.y(function(d) { return d.y;})
+				.interpolate("linear");
+	var svg5 = d3.select("#space").append("svg");
+	svg5.attr("width",800).attr("height",150);
+	var triangle2Data = [ {"x":100, "y":10}, {"x":100, "y":90},
+			      {"x":150,"y":90}, {"x":100, "y":10}];
+	var lineSegmentsData = [{"x":100, "y":90}, {"x":324, "y":90}];
+	var lineSegmentsData2 = [{"x":100 ,"y":10}, {"x": 100, "y":90 }, {"x":244 , "y":90 }];
+	var triangle3Data = [ {"x":400, "y":10}, {"x":400, "y":90},
+			      {"x":450,"y":90}, {"x":400, "y":10}];
+	var lineSegmentsData3 = [{"x":400, "y":90}, {"x":624, "y":90}];
+	var lineSegmentsData4 = [{"x":400 ,"y":10}, {"x": 400, "y":90 }, {"x":544 , "y":90 }];
+	triangleImage7 = svg5.append("path")
+				.attr("d", triangleFunction(lineSegmentsData))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "white");
+	function firstAnimation() 
+	{
+		triangleImage7.transition()
+				.attr("transform","rotate(0)")
+				.delay(500)
+				.duration(1000)
+				.attr("d", triangleFunction(lineSegmentsData2));
+		triangleImage7.transition()
+				.attr("transform","rotate(0)")
+				.delay(500)
+				.duration(1000)
+				.attr("d", triangleFunction(triangle2Data));
+	}
+
+	triangleImage8 = svg5.append("path")
+				.attr("d", triangleFunction(lineSegmentsData3))
+				.attr("stroke", "green")
+				.attr("stroke-width", 2)
+				.attr("fill", "white");
+	function secondAnimation()
+	{
+		triangleImage8.transition()
+				.attr("transform","rotate(0)")
+				.delay(500)
+				.duration(1000)
+				.attr("d", triangleFunction(lineSegmentsData4));
+
+		triangleImage8.transition()
+				.attr("transform","rotate(0)")
+				.delay(500)
+				.duration(1000)
+				.attr("d", triangleFunction(triangle3Data));
+	}
+
+	
+	function thirdAnimation() 
+	{
+		triangleImage8.transition()
+				.attr("transform", "rotate(0)")
+				.delay(500)
+				.duration(2500)
+				.attr("d", triangleFunction(triangle2Data));
+	}
+	$('.topic').mouseenter(function() {
+ 
+		       $('.topic').fadeTo('fast',0.50);
+    
+			});
+	$('.topic').mouseleave(function() {
+ 
+		       $('.topic').fadeTo('fast',1.00);
+    
+			});
+	
+	$("#explanations").accordion({collapsible: true, active: false});
+	
+	$('#animation1').click( function() {
+		firstAnimation();
+		});
+	$('#animation2').click( function() {
+		secondAnimation();
+		});
+	$('#animation3').click( function() {
+		thirdAnimation();
+		});
+	});
+	</script>
+`	<a href="fifthDemo.html">
+		Go to the next page</a>
+     </body>
+</html>
